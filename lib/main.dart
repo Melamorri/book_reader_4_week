@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:book_reader_4_week/pooh_text.dart';
 
 void main() => runApp(MyApp());
 
@@ -20,9 +21,10 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   int fontSize = 14;
+  String mainText = '$chapter1';
 
   void minusSize() {
-    if (fontSize > 0) {
+    if (fontSize > 6) {
       setState(() {
         fontSize--;
       });
@@ -30,7 +32,7 @@ class _HomeState extends State<Home> {
   }
 
   void plusSize() {
-    if (fontSize < 42) {
+    if (fontSize < 60) {
       setState(() {
         fontSize++;
       });
@@ -93,7 +95,7 @@ class _HomeState extends State<Home> {
                     ], // Only numbers can be entered
                     onSubmitted: (String font) {
                       int newFont = int.parse(font);
-                      if (newFont > 0 && newFont < 43) {
+                      if (newFont > 6 && newFont < 60) {
                         setState(() {
                           fontSize = newFont;
                         });
@@ -112,15 +114,48 @@ class _HomeState extends State<Home> {
                 ),
               ],
             ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                ElevatedButton(
+                  style: ButtonStyle(
+                      backgroundColor: MaterialStateProperty.all(Colors.amber)),
+                  onPressed: () {
+                    mainText = chapter1;
+                    setState(() {});
+                  },
+                  child: Text("Глава 1"),
+                ),
+                ElevatedButton(
+                  style: ButtonStyle(
+                      backgroundColor: MaterialStateProperty.all(Colors.amber)),
+                  onPressed: () {
+                    mainText = chapter2;
+                    setState(() {});
+                  },
+                  child: Text("Глава 2"),
+                ),
+                ElevatedButton(
+                  style: ButtonStyle(
+                      backgroundColor: MaterialStateProperty.all(Colors.amber)),
+                  onPressed: () {
+                    mainText = chapter3;
+                    setState(() {});
+                  },
+                  child: Text("Глава 3"),
+                ),
+              ],
+            ),
             Expanded(
               child: Container(
-                height: 450,
                 padding: EdgeInsets.all(20),
-                child: Text(
-                    'Винни-пух и пятачок отдыхали на веточке дуба. Пух сказал: ”Интересно, как долго мы ещё будем здесь торчать?” Пятачок ответил: ” Я думаю, ещё лет десять."',
-                    style: TextStyle(
-                        fontSize: fontSize.toDouble(),
-                        fontWeight: FontWeight.normal)),
+                child: SingleChildScrollView(
+                  scrollDirection: Axis.vertical,
+                  child: Text('$mainText',
+                      style: TextStyle(
+                          fontSize: fontSize.toDouble(),
+                          fontWeight: FontWeight.normal)),
+                ),
               ),
             ),
           ],
