@@ -22,6 +22,9 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   int fontSize = 14;
   String mainText = '$chapter1';
+  final buttonStyle = ButtonStyle(
+    backgroundColor: MaterialStateProperty.all(Colors.amber),
+  );
 
   void minusSize() {
     if (fontSize > 6) {
@@ -118,8 +121,7 @@ class _HomeState extends State<Home> {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 ElevatedButton(
-                  style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all(Colors.amber)),
+                  style: buttonStyle,
                   onPressed: () {
                     mainText = chapter1;
                     setState(() {});
@@ -127,8 +129,7 @@ class _HomeState extends State<Home> {
                   child: Text("Глава 1"),
                 ),
                 ElevatedButton(
-                  style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all(Colors.amber)),
+                  style: buttonStyle,
                   onPressed: () {
                     mainText = chapter2;
                     setState(() {});
@@ -136,8 +137,7 @@ class _HomeState extends State<Home> {
                   child: Text("Глава 2"),
                 ),
                 ElevatedButton(
-                  style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all(Colors.amber)),
+                  style: buttonStyle,
                   onPressed: () {
                     mainText = chapter3;
                     setState(() {});
